@@ -1,4 +1,5 @@
- <!--
+ <!-- Form using HTML
+ 
 <form accept-charset="UTF-8" action="/users" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="username">Username:</label>
@@ -11,6 +12,7 @@
 </form>
 -->
 
+<!-- Form using #form_tag
 
 <%= form_tag("/users", method: "post") do %>
   <%= label_tag(:username, "Username:") %>
@@ -20,4 +22,17 @@
   <%= label_tag(:password, "Password:") %>
   <%= text_field_tag(:password) %>
   <%= submit_tag("Submit") %>
+<% end %>
+-->
+
+<!-- Form using #form_with -->
+
+<%= form_with model: @user do |form| %>
+  <%= form.label :username, 'Enter your username:' %>
+  <%= form.text_field :username %><br><br>
+  <%= form.label :email %>
+  <%= form.text_field :email, value: 'example@example.com' %><br><br>
+  <%= form.label :password %>
+  <%= form.password_field :password %><br><br>
+  <%= form.submit %>
 <% end %>
